@@ -1,0 +1,30 @@
+{
+	"name": "poole",
+	"version": "0.0.1",
+	"description": "Easily push a Jekyll based static site to an AWS S3 bucket",
+	"keywords": [
+		"jekyll",
+		"s3",
+		"aws",
+		"amazon"
+	],
+	"author": "Geoff Blair <geoff@lostdecadegames.com>",
+	"license": "MIT",
+	"readmeFilename": "README.md",
+	"repository": "",
+	"main": "lib/poole.js",
+	"bin": {
+		"poole": "./bin/poole"
+	},
+	"dependencies": {
+		"bagpipe": "~0.2.0",
+		"colors": "~0.6.0-1",
+		"wrench": "~1.4.4",
+		"ini": "~1.0.5",
+		"knox": "~0.4.2"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	}
+}
