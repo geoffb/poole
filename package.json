@@ -11,7 +11,7 @@
 	"author": "Geoff Blair <geoff@lostdecadegames.com>",
 	"license": "MIT",
 	"readmeFilename": "README.md",
-	"repository": "",
+	"repository": "git://github.com/geoffb/poole.git",
 	"main": "lib/poole.js",
 	"bin": {
 		"poole": "./bin/poole"
