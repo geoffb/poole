@@ -4,12 +4,13 @@ Easily push a [Jekyll][1] based static site to an [AWS S3][2] bucket.
 
 ## Setup
 
-TODO:
+Install Poole via npm:
 
+```
+npm install -g poole
+```
 
-
-* How to setup
-* Requires jekyll to be installed an configured
+This will install Poole globally and allow you to run the program via command line.
 
 ## Configuration
 
@@ -23,6 +24,8 @@ secret = mySecret
 bucket = bucketName
 region = us-west-2
 ```
+
+Make sure you **DO NOT COMMIT** this file into source control as it contains your **secret AWS information**!
 
 ## Usage
 
