@@ -1,6 +1,6 @@
 {
 	"name": "poole",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Easily push a Jekyll based static site to an AWS S3 bucket",
 	"keywords": [
 		"jekyll",
@@ -20,8 +20,8 @@
 		"bagpipe": "~0.2.0",
 		"colors": "~0.6.0-1",
 		"wrench": "~1.4.4",
-		"ini": "~1.0.5",
-		"knox": "~0.4.2"
+		"knox": "~0.4.2",
+		"optimist": "~0.3.5"
 	},
 	"devDependencies": {},
 	"scripts": {
