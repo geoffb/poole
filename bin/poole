@@ -1,3 +1,12 @@
 #!/usr/bin/env node
-
+var argv = require("optimist").argv;
 var poole = require("../lib/poole");
+
+switch (argv._[0]) {
+	case "deploy":
+		poole.deploy(argv._[1]);
+		break;
+	default:
+		console.info("No command. Try \"poole deploy stage\", for example.");
+		break;
+}

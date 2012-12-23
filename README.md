@@ -14,18 +14,57 @@ This will install Poole globally and allow you to run the program via command li
 
 ## Configuration
 
-In order to access your S3 bucket, Poole needs to know your AWS keys and bucket information. This information is provided in a configuration file: `.poole.ini` in the root of your Jekyll based project.
+### AWS authentication
 
-Here's a simple example of a Poole config file:
+In order to access your S3 bucket, Poole needs to know your AWS keys and bucket information. This information is provided in a configuration file: `~/.poole-auth.json`, which lives in your home directory. This file can contain several different AWS key/secret pairs.
 
-```ini
-key = myKey
-secret = mySecret
-bucket = bucketName
-region = us-west-2
+Here's a simple example of a Poole auth file:
+
+```json
+{
+	"lostdecadegames": {
+		"key": "my-aws-key",
+		"secret": "my-aws-secret"
+	}
+}
 ```
 
+Here we have an AWS key/secret alias called "lostdecadegames". If you have more than one AWS account, you can add more entries here.
+
 Make sure you **DO NOT COMMIT** this file into source control as it contains your **secret AWS information**!
+
+### Project specific configuration
+
+Each project you wish to push to an S3 bucket must have a `.poole.json` file at its root. Here's an example of a simple Poole project configuration file:
+
+```json
+{
+	"targets": {
+		"production": {
+			"auth": "lostdecadegames",
+			"bucket": "www.cryptrun.com",
+			"region": "us-west-2"
+		},
+		"stage": {
+			"auth": "lostdecadegames",
+			"bucket": "stage.www.cryptrun.com",
+			"region": "us-west-2"
+		}
+	},
+	"headers": {
+		"(jpg|jpeg|png|mp3)$": {
+			"Cache-control": "max-age=31536000"
+		},
+		"(html|htm)$": {
+			"Cache-control": "max-age=172800, must-revalidate"
+		}
+	}
+}
+```
+
+The `targets` key lists the various S3 buckets where you will be deploying your site. In this example we have "production" and "stage" targets. The `auth` key corresponds to an entry in your `~/.poole-auth.json` file, detailed above.
+
+The `headers` key lists some regex rules and associated headers. Any files matching the rules will have the specified headers set in S3. In this example, `.html` and `.htm` files will have their `max-age` set to 2 days while images don't expire for a year.
 
 ## Usage
 
@@ -33,8 +72,10 @@ Simply navigate to your Jekyll based project and run `poole` from the command li
 
 ```bash
 cd ~/myWebsite
-poole
+poole deploy stage
 ```
+
+In this example, we're telling Poole to deploy the current site to the "stage" target defined in `.poole.json`.
 
 ## Why "Poole"?
 
