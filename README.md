@@ -16,15 +16,17 @@ This will install Poole globally and allow you to run the program via command li
 
 ### AWS authentication
 
-In order to access your S3 bucket, Poole needs to know your AWS keys and bucket information. This information is provided in a configuration file: `~/.poole-auth.json`, which lives in your home directory. This file can contain several different AWS key/secret pairs.
+In order to access your S3 bucket, Poole needs to know your AWS keys and bucket information. This information is provided in the Poole configuration file: `~/.poole-config.json`, which lives in your home directory. This file can contain several different AWS key/secret pairs as well as some options.
 
-Here's a simple example of a Poole auth file:
+Here's a simple example of a Poole config file with AWS auth info:
 
 ```json
 {
-	"lostdecadegames": {
-		"key": "my-aws-key",
-		"secret": "my-aws-secret"
+	"auth": {
+		"lostdecadegames": {
+			"key": "my-aws-key",
+			"secret": "my-aws-secret"
+		}
 	}
 }
 ```
@@ -32,6 +34,25 @@ Here's a simple example of a Poole auth file:
 Here we have an AWS key/secret alias called "lostdecadegames". If you have more than one AWS account, you can add more entries here.
 
 Make sure you **DO NOT COMMIT** this file into source control as it contains your **secret AWS information**!
+
+### Misc. Options
+
+Some miscellaneous options can all be specified with the "opts" key of your Poole config file. For example:
+
+```json
+{
+	"auth": {
+
+	},
+	"opts": {
+		"maxConcurrency": 10
+	}
+}
+```
+
+The currently supported options are:
+
+* maxConcurrency: Limits the number of concurrent file operations
 
 ### Project specific configuration
 
